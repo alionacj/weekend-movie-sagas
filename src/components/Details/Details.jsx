@@ -5,13 +5,16 @@ function Details() {
 
     const history = useHistory()
 
-    const detailsId = useSelector(store => store.detailsId)
     const movies = useSelector(store => store.movies)
+    const details = useSelector(store => store.details)
+    let genres = details.genres
+
+    console.log('details:', details)
 
     // finds clicked movie from movie store
     let selectedMovie
     for (let movie of movies) {
-        if (movie.id === detailsId) {
+        if (movie.id === details.id) {
             selectedMovie = movie
         }
     }
@@ -21,12 +24,18 @@ function Details() {
     }
 
     return (
-        <div>
-            <h1>{selectedMovie.title}</h1>
-            <img src={selectedMovie.poster} />
-            <p>{selectedMovie.description}</p>
-            <button onClick={returnHome}>Back</button>
-        </div>
+        selectedMovie && genres && (
+            <div>
+                <h1>{selectedMovie.title}</h1>
+                <img src={selectedMovie.poster} />
+                <p>Genres:</p>
+                <ul>
+                    {genres.map((genre) => <li>{genre.name}</li>)}
+                </ul>
+                <p>{selectedMovie.description}</p>
+                <button onClick={returnHome}>Back</button>
+            </div>
+        )
     )
 }
 

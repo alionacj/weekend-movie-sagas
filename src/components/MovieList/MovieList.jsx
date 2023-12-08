@@ -13,10 +13,11 @@ function MovieList() {
   useEffect(() => {
     dispatch({ type: 'FETCH_MOVIES' });
   }, []);
-  
-  const navToDetails = (id) => {
+
+  // sets details in reducer upon click
+  const handleDetails = (id) => {
     dispatch({
-      type: 'SELECT_DETAILS_ID',
+      type: 'FETCH_DETAILS',
       payload: id
     })
     history.push('/details')
@@ -36,7 +37,7 @@ function MovieList() {
                 data-testid="movieItem"
                 src={movie.poster}
                 alt={movie.title}
-                onClick={() => {navToDetails(movie.id)}}/>
+                onClick={() => {handleDetails(movie.id)}}/>
             </div>
           );
         })}

@@ -7,8 +7,12 @@ import axios from 'axios';
 // Create the rootSaga generator function
 function* rootSaga() {
   yield takeEvery('FETCH_MOVIES', fetchAllMovies);
-  yield takeLatest('SELECT_DETAILS_ID', setDetailsId)
+  yield takeLatest('FETCH_DETAILS', fetchDetails)
 }
+
+
+
+// ***** SAGA FUNCTIONS *****
 
 function* fetchAllMovies() {
   try {
@@ -24,20 +28,42 @@ function* fetchAllMovies() {
   }
 }
 
-function* setDetailsId(action) {
-  try{
-    yield put({
-      type: 'SET_DETAILS_ID',
-      payload: action.payload
+// finds movie id and genre
+function* fetchDetails(action) {
+  let id = action.payload
+  try {
+    const genreResponse = yield axios({
+      method: 'GET',
+      url: `/api/genres/${id}`
     })
+    yield put({
+      type: 'SET_DETAILS',
+      payload: {
+        id: id,
+        genres: genreResponse.data
+      }
+    })
+
+    // yield put({
+    //   type: 'SET_DETAILS_ID',
+    //   payload: selectedId
+    // })
   }
   catch (error) {
-    console.error('setDetailsId error:', error)
+    console.error('fetchDetails error:', error)
   }
 }
 
+
+
+// ***** MIDDLEWARE *****
+
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
+
+
+
+// ***** REDUCERS *****
 
 // Used to store movies returned from the server
 const movies = (state = [], action) => {
@@ -49,9 +75,13 @@ const movies = (state = [], action) => {
   }
 }
 
-// sets id reducer upon click
-const detailsId = (state = 0, action) => {
-  if (action.type === 'SET_DETAILS_ID') {
+// contains: {
+//    id: id
+//    genres: []
+// }
+
+const details = (state = {}, action) => {
+  if (action.type === 'SET_DETAILS') {
     return action.payload
   }
   return state
@@ -67,12 +97,16 @@ const genres = (state = [], action) => {
   }
 }
 
+
+
+// ***** STORE *****
+
 // Create one store that all components can use
 const storeInstance = createStore(
   combineReducers({
     movies,
     genres,
-    detailsId
+    details
   }),
   // Add sagaMiddleware to our store
   applyMiddleware(sagaMiddleware, logger),
