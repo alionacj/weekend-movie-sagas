@@ -8,12 +8,17 @@ function MovieList() {
   const movies = useSelector(store => store.movies);
 
   const dispatch = useDispatch();
+  const history = useHistory()
+
   useEffect(() => {
     dispatch({ type: 'FETCH_MOVIES' });
   }, []);
-
-  const history = useHistory()
-  const navToDetails = () => {
+  
+  const navToDetails = (id) => {
+    dispatch({
+      type: 'SELECT_DETAILS_ID',
+      payload: id
+    })
     history.push('/details')
   }
 
@@ -31,7 +36,7 @@ function MovieList() {
                 data-testid="movieItem"
                 src={movie.poster}
                 alt={movie.title}
-                onClick={navToDetails}/>
+                onClick={() => {navToDetails(movie.id)}}/>
             </div>
           );
         })}
