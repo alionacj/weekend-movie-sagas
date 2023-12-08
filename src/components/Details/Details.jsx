@@ -30,7 +30,7 @@ function Details() {
                 <img src={selectedMovie.poster} />
                 <p>Genres:</p>
                 <ul>
-                    {genres.map((genre) => <li>{genre.name}</li>)}
+                    {genres.map((genre) => <li key={genres.indexOf(genre)}>{genre.name}</li>)}
                 </ul>
                 <p>{selectedMovie.description}</p>
                 <button onClick={returnHome}>Back</button>
