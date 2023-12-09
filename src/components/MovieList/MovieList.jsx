@@ -30,11 +30,11 @@ function MovieList() {
         {movies.map(movie => {
           return (
             <div
-              data-testid='movieItem'
+              data-testid="movieItem"
               key={movie.id}>
               <h3>{movie.title}</h3>
               <img
-                data-testid="movieItem"
+                data-testid="toDetails"
                 src={movie.poster}
                 alt={movie.title}
                 onClick={() => {handleDetails(movie.id)}}/>
