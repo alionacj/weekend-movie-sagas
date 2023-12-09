@@ -9,8 +9,6 @@ function Details() {
     const details = useSelector(store => store.details)
     let genres = details.genres
 
-    console.log('details:', details)
-
     // finds clicked movie from movie store
     let selectedMovie
     for (let movie of movies) {
