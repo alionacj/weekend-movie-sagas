@@ -11,7 +11,7 @@ function App() {
       <h1>The Movies Saga!</h1>
       <Router>
 
-        <Route exact path="/" exact>
+        <Route exact path="/">
           <MovieList />
         </Route>
         

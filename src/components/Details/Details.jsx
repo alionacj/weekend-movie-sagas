@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux"
 import { useHistory } from "react-router-dom/cjs/react-router-dom"
+import Button from '@mui/material/Button'
 
 function Details() {
 
@@ -31,7 +32,12 @@ function Details() {
                     {genres.map((genre) => <li key={genres.indexOf(genre)}>{genre.name}</li>)}
                 </ul>
                 <p>{selectedMovie.description}</p>
-                <button data-testid="toList" onClick={returnHome}>Back</button>
+                <Button
+                    data-testid="toList"
+                    variant="contained"
+                    onClick={returnHome}>
+                    Back
+                </Button>
             </div>
         )
     )
