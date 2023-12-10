@@ -30,7 +30,7 @@ function MovieList() {
   return (
     <>
     <ThemeProvider theme={theme}>
-      <Typography variant="h2" sx={{ mt: 5, mb: 5}}>Showings</Typography>
+      <Typography variant="h3" sx={{ mt: 5, mb: 5}}>Showings</Typography>
       <Grid
         className="movies"
         container
@@ -47,7 +47,8 @@ function MovieList() {
                   bgcolor: 'error.main',
                   boxShadow: 20,
                   height: 425
-                }}>
+                }}
+                onClick={() => {handleDetails(movie.id)}}>
                 <CardHeader
                   title={movie.title}
                   sx={{
@@ -59,7 +60,7 @@ function MovieList() {
                     data-testid="toDetails"
                     src={movie.poster}
                     alt={movie.title}
-                    onClick={() => {handleDetails(movie.id)}}/>
+                    />
                 </CardContent>
               </Card>
             </Grid>
