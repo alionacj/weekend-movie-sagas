@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 import './MovieList.css'
 
+import { Card, CardContent, CardHeader, Grid } from '@mui/material';
+
 function MovieList() {
 
   const movies = useSelector(store => store.movies);
@@ -26,22 +28,35 @@ function MovieList() {
   return (
     <main>
       <h1>MovieList</h1>
-      <section className="movies">
+      <Grid container spacing={6}
+        className="movies"
+      >
         {movies.map(movie => {
           return (
-            <div
-              data-testid="movieItem"
-              key={movie.id}>
-              <h3>{movie.title}</h3>
-              <img
-                data-testid="toDetails"
-                src={movie.poster}
-                alt={movie.title}
-                onClick={() => {handleDetails(movie.id)}}/>
-            </div>
+            <Grid item xs={3}>
+              <Card
+                data-testid="movieItem"
+                key={movie.id}
+                sx={{
+                  borderRadius: 2,
+                  bgcolor: 'error.main',
+                  boxShadow: 20
+                }}>
+                <CardHeader
+                  title={movie.title}
+                />
+                <CardContent>
+                  <img
+                    data-testid="toDetails"
+                    src={movie.poster}
+                    alt={movie.title}
+                    onClick={() => {handleDetails(movie.id)}}/>
+                </CardContent>
+              </Card>
+            </Grid>
           );
         })}
-      </section>
+      </Grid>
     </main>
 
   );

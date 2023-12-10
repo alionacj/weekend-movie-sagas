@@ -1,6 +1,9 @@
 import { useSelector } from "react-redux"
 import { useHistory } from "react-router-dom/cjs/react-router-dom"
+
+import { Typography } from "@mui/material"
 import Button from '@mui/material/Button'
+
 
 function Details() {
 
@@ -25,7 +28,7 @@ function Details() {
     return (
         selectedMovie && genres && (
             <div data-testid="movieDetails">
-                <h1>{selectedMovie.title}</h1>
+                <Typography variant="h1">{selectedMovie.title}</Typography>
                 <img src={selectedMovie.poster} />
                 <p>Genres:</p>
                 <ul>
@@ -34,7 +37,7 @@ function Details() {
                 <p>{selectedMovie.description}</p>
                 <Button
                     data-testid="toList"
-                    variant="contained"
+                    variant="outlined"
                     onClick={returnHome}>
                     Back
                 </Button>
