@@ -7,7 +7,6 @@ import { Typography, Container, ThemeProvider } from '@mui/material';
 
 import './App.css';
 import theme from '../theme';
-import curtainImage from './theatreCurtain.jpg'
 
 function App() {
   return (
