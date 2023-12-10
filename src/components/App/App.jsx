@@ -7,6 +7,7 @@ import { Typography, Container, ThemeProvider } from '@mui/material';
 
 import './App.css';
 import theme from '../theme';
+import curtainImage from './theatreCurtain.jpg'
 
 function App() {
   return (
@@ -24,7 +25,6 @@ function App() {
           <Typography
             variant="h1"
             sx={{
-              // color: 'secondary.main',
               bgcolor: 'error.main',
               border: '1',
               borderColor: 'background.red',
