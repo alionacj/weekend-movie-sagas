@@ -5,7 +5,7 @@ import './MovieList.css'
 
 import theme from '../theme';
 
-import { Card, CardContent, CardHeader, Grid, ThemeProvider } from '@mui/material';
+import { Card, CardContent, CardHeader, Grid, ThemeProvider, Typography } from '@mui/material';
 
 function MovieList() {
 
@@ -30,7 +30,7 @@ function MovieList() {
   return (
     <>
     <ThemeProvider theme={theme}>
-      <h1>MovieList</h1>
+      <Typography variant="h2" sx={{ mt: 5, mb: 5}}>Showings</Typography>
       <Grid
         className="movies"
         container

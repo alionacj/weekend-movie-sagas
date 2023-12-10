@@ -24,12 +24,16 @@ function App() {
           <Typography
             variant="h1"
             sx={{
-              bgcolor: 'text.gray',
+              // color: 'secondary.main',
+              bgcolor: 'error.main',
+              border: '1',
+              borderColor: 'background.red',
+              boxShadow: 20,
               borderRadius: 4,
-              padding: 1
+              padding: 2
             }}
           >
-            The Movies Saga!
+            Saga Movie Theatre
           </Typography>
           <Router>
 
