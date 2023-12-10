@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 import './MovieList.css'
 
-import { Card, CardContent, CardHeader, Grid } from '@mui/material';
+import theme from '../theme';
+
+import { Card, CardContent, CardHeader, Grid, ThemeProvider } from '@mui/material';
 
 function MovieList() {
 
@@ -26,10 +28,13 @@ function MovieList() {
   }
 
   return (
-    <main>
+    <>
+    <ThemeProvider theme={theme}>
       <h1>MovieList</h1>
-      <Grid container spacing={6}
+      <Grid
         className="movies"
+        container
+        spacing={6}
       >
         {movies.map(movie => {
           return (
@@ -40,10 +45,14 @@ function MovieList() {
                 sx={{
                   borderRadius: 2,
                   bgcolor: 'error.main',
-                  boxShadow: 20
+                  boxShadow: 20,
+                  height: 425
                 }}>
                 <CardHeader
                   title={movie.title}
+                  sx={{
+                    height: 60
+                  }}
                 />
                 <CardContent>
                   <img
@@ -57,8 +66,8 @@ function MovieList() {
           );
         })}
       </Grid>
-    </main>
-
+    </ThemeProvider>
+    </>
   );
 }
 

@@ -4,6 +4,8 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom"
 import { Typography } from "@mui/material"
 import Button from '@mui/material/Button'
 
+import theme from "../theme"
+
 
 function Details() {
 
