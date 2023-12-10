@@ -40,11 +40,11 @@ function App() {
             <Route exact path="/">
               <MovieList />
             </Route>
-            
+
             <Route exact path="/details">
               <Details />
             </Route>
-            
+
           </Router>
         </Container>
       </ThemeProvider>

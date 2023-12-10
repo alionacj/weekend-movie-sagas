@@ -29,45 +29,45 @@ function MovieList() {
 
   return (
     <>
-    <ThemeProvider theme={theme}>
-      <Typography variant="h3" sx={{ mt: 5, mb: 5}}>Showings</Typography>
-      <Grid
-        className="movies"
-        container
-        spacing={6}
-      >
-        {movies.map(movie => {
-          return (
-            <Grid item xs={3}>
-              <Card
-                data-testid="movieItem"
-                key={movie.id}
-                sx={{
-                  borderRadius: 2,
-                  bgcolor: 'error.main',
-                  boxShadow: 20,
-                  height: 425
-                }}
-                onClick={() => {handleDetails(movie.id)}}>
-                <CardHeader
-                  title={movie.title}
+      <ThemeProvider theme={theme}>
+        <Typography variant="h3" sx={{ mt: 5, mb: 5 }}>Showings</Typography>
+        <Grid
+          className="movies"
+          container
+          spacing={6}
+        >
+          {movies.map(movie => {
+            return (
+              <Grid item xs={3}>
+                <Card
+                  data-testid="movieItem"
+                  key={movie.id}
                   sx={{
-                    height: 60
+                    borderRadius: 2,
+                    bgcolor: 'error.main',
+                    boxShadow: 20,
+                    height: 425
                   }}
-                />
-                <CardContent>
-                  <img
-                    data-testid="toDetails"
-                    src={movie.poster}
-                    alt={movie.title}
+                  onClick={() => { handleDetails(movie.id) }}>
+                  <CardHeader
+                    title={movie.title}
+                    sx={{
+                      height: 60
+                    }}
+                  />
+                  <CardContent>
+                    <img
+                      data-testid="toDetails"
+                      src={movie.poster}
+                      alt={movie.title}
                     />
-                </CardContent>
-              </Card>
-            </Grid>
-          );
-        })}
-      </Grid>
-    </ThemeProvider>
+                  </CardContent>
+                </Card>
+              </Grid>
+            );
+          })}
+        </Grid>
+      </ThemeProvider>
     </>
   );
 }

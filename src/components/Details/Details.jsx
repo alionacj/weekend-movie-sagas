@@ -49,10 +49,10 @@ function Details() {
                         >
                             <CardContent>
                                 <img src={selectedMovie.poster} />
-                                    <p>Genres:</p>
-                                    <ul>
-                                        {genres.map((genre) => <li key={genres.indexOf(genre)}>{genre.name}</li>)}
-                                    </ul>
+                                <p>Genres:</p>
+                                <ul>
+                                    {genres.map((genre) => <li key={genres.indexOf(genre)}>{genre.name}</li>)}
+                                </ul>
                             </CardContent>
                         </Card>
                     </div>
