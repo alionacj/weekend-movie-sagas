@@ -6,29 +6,28 @@ import axios from 'axios';
 
 // Create the rootSaga generator function
 function* rootSaga() {
-  yield takeEvery('FETCH_MOVIES', fetchAllMovies);
+  yield takeEvery('FETCH_MOVIES', fetchAllMovies)
   yield takeLatest('FETCH_DETAILS', fetchDetails)
 }
 
 
-
 // ***** SAGA FUNCTIONS *****
 
+// get movies from db, set reducer with data
 function* fetchAllMovies() {
   try {
-    // Get the movies:
-    const moviesResponse = yield axios.get('/api/movies');
-    // Set the value of the movies reducer:
+    const moviesResponse = yield axios.get('/api/movies')
     yield put({
       type: 'SET_MOVIES',
       payload: moviesResponse.data
-    });
+    })
   } catch (error) {
-    console.log('fetchAllMovies error:', error);
+    console.log('fetchAllMovies error:', error)
   }
 }
 
 // finds movie id and genre
+// i/o: id / { id: __, genres: __ }
 function* fetchDetails(action) {
   let id = action.payload
   try {
@@ -43,17 +42,11 @@ function* fetchDetails(action) {
         genres: genreResponse.data
       }
     })
-
-    // yield put({
-    //   type: 'SET_DETAILS_ID',
-    //   payload: selectedId
-    // })
   }
   catch (error) {
     console.error('fetchDetails error:', error)
   }
 }
-
 
 
 // ***** MIDDLEWARE *****
@@ -62,10 +55,9 @@ function* fetchDetails(action) {
 const sagaMiddleware = createSagaMiddleware();
 
 
-
 // ***** REDUCERS *****
 
-// Used to store movies returned from the server
+// stores movies from db
 const movies = (state = [], action) => {
   switch (action.type) {
     case 'SET_MOVIES':
@@ -75,26 +67,13 @@ const movies = (state = [], action) => {
   }
 }
 
-// contains: {
-//    id: id
-//    genres: []
-// }
-
+// stores specific movie details
+// state: { id: ___, genres: ___ }
 const details = (state = {}, action) => {
   if (action.type === 'SET_DETAILS') {
     return action.payload
   }
   return state
-}
-
-// Used to store the movie genres
-const genres = (state = [], action) => {
-  switch (action.type) {
-    case 'SET_GENRES':
-      return action.payload;
-    default:
-      return state;
-  }
 }
 
 

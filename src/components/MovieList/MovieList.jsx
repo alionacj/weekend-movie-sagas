@@ -1,19 +1,20 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom'
-import './MovieList.css'
-
-import theme from '../theme';
+import { useHistory } from 'react-router-dom';
 
 import { Card, CardContent, CardHeader, Grid, ThemeProvider, Typography } from '@mui/material';
+import theme from '../theme';
+
+import './MovieList.css';
 
 function MovieList() {
 
+  // reducers/tools
   const movies = useSelector(store => store.movies);
-
   const dispatch = useDispatch();
   const history = useHistory()
 
+  // on launch
   useEffect(() => {
     dispatch({ type: 'FETCH_MOVIES' });
   }, []);
@@ -28,14 +29,19 @@ function MovieList() {
   }
 
   return (
+
+    // container
     <>
       <ThemeProvider theme={theme}>
         <Typography variant="h3" sx={{ mt: 5, mb: 5 }}>Showings</Typography>
+
+        {/* movies grid */}
         <Grid
           className="movies"
           container
-          spacing={6}
-        >
+          spacing={6}>
+
+          {/* map of all movies into cards */}
           {movies.map(movie => {
             return (
               <Grid item xs={3}>
@@ -53,19 +59,18 @@ function MovieList() {
                     title={movie.title}
                     sx={{
                       height: 60
-                    }}
-                  />
+                    }}/>
                   <CardContent>
                     <img
                       data-testid="toDetails"
                       src={movie.poster}
-                      alt={movie.title}
-                    />
+                      alt={movie.title}/>
                   </CardContent>
                 </Card>
               </Grid>
             );
           })}
+
         </Grid>
       </ThemeProvider>
     </>

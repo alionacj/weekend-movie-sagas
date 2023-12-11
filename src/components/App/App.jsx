@@ -10,6 +10,8 @@ import theme from '../theme';
 
 function App() {
   return (
+
+    // container
     <>
       <ThemeProvider theme={theme}>
         <Container
@@ -19,8 +21,9 @@ function App() {
             bgcolor: "background.red",
             borderRadius: 2,
             padding: 4
-          }}
-        >
+          }}>
+
+          {/* header */}
           <Typography
             variant="h1"
             sx={{
@@ -30,12 +33,12 @@ function App() {
               boxShadow: 20,
               borderRadius: 4,
               padding: 2
-            }}
-          >
+            }}>
             Saga Movie Theatre
           </Typography>
-          <Router>
 
+          {/* components */}
+          <Router>
             <Route exact path="/">
               <MovieList />
             </Route>
@@ -43,8 +46,8 @@ function App() {
             <Route exact path="/details">
               <Details />
             </Route>
-
           </Router>
+
         </Container>
       </ThemeProvider>
     </>
